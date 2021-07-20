@@ -1,0 +1,18 @@
+﻿@model Curso
+
+@{
+    ViewData["Title"] = "Editar";
+}
+
+<h1>Atualização de Curso</h1>
+
+<form asp-action="editar">
+    <input asp-for="CursoId" />
+
+    <partial name="_Formulario"/>
+
+    <input type="submit" value="Editar" class="btn btn-outline-primary" />
+    <a asp-action="index" class="btn btn-outline-dark">Cancelar</a>
+
+</form>
+

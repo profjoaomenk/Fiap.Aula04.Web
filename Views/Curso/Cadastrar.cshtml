@@ -1,0 +1,17 @@
+﻿@model Curso
+
+@{
+    ViewData["Title"] = "Cadastrar";
+}
+
+<h1>Cadastro de Curso</h1>
+
+<msg texto="@TempData["msg"]"></msg>
+
+<form asp-action="cadastrar">
+    
+    <partial name="_Formulario" />
+
+    <input type="submit" value="Cadastrar" class="btn btn-outline-primary" />
+</form>
+

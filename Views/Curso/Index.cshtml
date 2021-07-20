@@ -1,0 +1,58 @@
+﻿@model List<Curso>
+
+@{
+    ViewData["Title"] = "Lista de Cursos";
+}
+
+<h1>Cursos</h1>
+
+<msg texto="@TempData["msg"]"></msg>
+
+<a asp-action="cadastrar">Cadastrar</a>
+<table class="table table-hover">
+    <tr>
+        <th>Nome</th>
+        <th>Data Lançamento</th>
+        <th>Certificado</th>
+        <th>Tipo</th>
+        <th></th>
+    </tr>
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>@item.Nome</td>
+            <td>@item.DataLancamento.ToShortDateString()</td>
+            <td>@(item.Certificado?"Sim":"Não")</td>
+            <td>@item.Tipo</td>
+            <td>
+                <a asp-action="editar" class="btn btn-sm btn-outline-dark" asp-route-id="@item.CursoId">Atualizar</a>
+                <button onclick="CursoId.value = @item.CursoId" type="button" class="btn btn-sm btn-outline-danger" data-toggle="modal" data-target="#exampleModal">
+                    Excluir
+                </button>
+            </td>
+        </tr>
+    }
+</table>
+
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Confirmação</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                Deseja realmente excluir o curso?
+            </div>
+            <div class="modal-footer">
+                <form asp-action="remover">
+                    <input type="hidden" name="id" id="CursoId" />
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Não</button>
+                    <button type="submit" class="btn btn-danger">Sim</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
